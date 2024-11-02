@@ -4,6 +4,7 @@ import Image from "next/image";
 import Logo from "./../../../public/Logo.png";
 import { Button } from "../ui/button";
 import { Link } from "lucide-react";
+import LoginModal from "@/app/auth/LoginModal";
 function Navbar({ user }: { user?: CustomUser }) {
   return (
     <nav className="bg-white shadow-sm">
