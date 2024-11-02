@@ -1,18 +1,16 @@
 import React from "react";
-import { Button } from "@/components/ui/button";
-import Image from "next/image";
-import ig from "./../../public/Logo.png";
 import HeroSection from "@/components/landing/HeroSection";
 import Footer from "@/components/landing/Footer";
+import Navbar from "@/components/landing/Navbar";
+import Pricing from "@/components/landing/Pricing";
 function App() {
   return (
-    <>
-      <div>I am app</div>
-      <Button>Click Me</Button>
-      <Image src={ig} alt="logo" width={100} height={100} />
+    <div className="flex flex-col">
+      <Navbar/>
       <HeroSection />
+      <Pricing/>
       <Footer />
-    </>
+    </div>
   );
 }
 
