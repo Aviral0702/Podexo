@@ -1,3 +1,4 @@
+"use client";
 import React ,{Suspense, useState} from "react";
 import {
   DropdownMenu,
@@ -9,7 +10,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { CustomUser } from "@/app/api/auth/[...nextauth]/options";
 import UserAvatar from "./UserAvatar";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
+import LogoutModal from "@/app/auth/LogoutModal";
 function ProfileDropdown({ user }: { user: CustomUser | null }) {
   const router = useRouter();
   const [open, setOpen] = useState(false);
@@ -17,7 +19,7 @@ function ProfileDropdown({ user }: { user: CustomUser | null }) {
     <>
         {open ?? (
             <Suspense fallback={<div>Loading...</div>}>
-                <LogoutModal open={open} setOpen={setOpen} />
+                <LogoutModal/>
             </Suspense>
         )}
       <DropdownMenu>

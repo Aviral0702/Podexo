@@ -13,19 +13,20 @@ function DashboardNav({
   userCoins?: CoinsType | null;
 }) {
   return (
-    <nav>
+    <nav className="w-full flex justify-between items-center h-12 p-2">
       <Link href="/">
         <div className="flex items-center space-x-2">
           <Image src={Logo} width={60} height={40} alt="lgo" />
           <h1 className="text-2xl ">Podexo</h1>
         </div>
       </Link>
-      <div>
-        <span>{userCoins?.coins ?? 0}</span>
-        <Image src={Coin} alt="coin" width={30} height={30} />
+      <div className="flex items-center space-x-4">
+        <div className="flex space-x-2 items-center">
+          <span className="text-xl font-bold">{userCoins?.coins ?? 0}</span>
+          <Image src={Coin} width={30} height={30} alt="coin" />
+        </div>
+        <ProfileDropdown user={user ?? null} />
       </div>
-      <ProfileDropdown user={user} />
-
     </nav>
   );
 }
