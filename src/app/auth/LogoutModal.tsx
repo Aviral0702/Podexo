@@ -1,50 +1,48 @@
 "use client";
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { signIn } from "next-auth/react";
-import Image from "next/image";
-export default function LogoutModal() {
-  const handleGoogleLogin = async () => {
-    signIn("google", {
-      redirect: true,
-      callbackUrl: "/",
-    });
-  };
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import { signOut } from "next-auth/react";
+
+function LogoutModal({
+  open,
+  setOpen,
+}: {
+  open: boolean;
+  setOpen: Dispatch<SetStateAction<boolean>>;
+}) {
+  signOut({
+    callbackUrl: "/",
+    redirect: true,
+  });
 
   return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <Button variant="outline" className="ml-4">
-          Login / Sign up
-        </Button>
-      </DialogTrigger>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>Login/Signup</DialogTitle>
-        </DialogHeader>
-        <div className="text-center">
-          <h1 className="text-3xl font-extrabold bg-gradient-to-r from-blue-500 to-indigo-600 bg-clip-text text-transparent">
-            PodBite
-          </h1>
-        </div>
-        <Button variant="outline" onClick={handleGoogleLogin}>
-          <Image
-            src="/images/google.png"
-            className=" mr-4"
-            width={25}
-            height={25}
-            alt="google"
-          />
-          Continue with Google
-        </Button>
-      </DialogContent>
-    </Dialog>
+    <AlertDialog open={open} onOpenChange={setOpen}>
+      <AlertDialogTrigger>Open</AlertDialogTrigger>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+          <AlertDialogDescription>
+            This action cannot be undone. This will permanently delete your
+            account and remove your data from our servers.
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogAction>Continue</AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
   );
 }
+
+export default LogoutModal;

@@ -19,7 +19,7 @@ function ProfileDropdown({ user }: { user: CustomUser | null }) {
     <>
         {open ?? (
             <Suspense fallback={<div>Loading...</div>}>
-                <LogoutModal/>
+                <LogoutModal open={open} setOpen={setOpen}/>
             </Suspense>
         )}
       <DropdownMenu>
