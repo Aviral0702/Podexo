@@ -11,7 +11,8 @@ import {
 import { CustomUser } from "@/app/api/auth/[...nextauth]/options";
 import UserAvatar from "./UserAvatar";
 import { useRouter } from "next/navigation";
-import LogoutModal from "@/app/auth/LogoutModal";
+import dynamic from "next/dynamic";
+const LogoutModal = dynamic(() => import("@/app/auth/LogoutModal"));
 function ProfileDropdown({ user }: { user: CustomUser | null }) {
   const router = useRouter();
   const [open, setOpen] = useState(false);
